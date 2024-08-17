@@ -1,0 +1,29 @@
+body *{
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    margin: 1em;
+}
+
+.numbers,
+.calculator-case,
+.operators{
+    flex-direction: column;
+}
+
+.display{
+    width:100%
+    text-align: right;
+}
+
+.numbers,
+.num-row,
+.number,
+.operators,
+.operator,
+.calculator-case *{
+    padding: 2px;
+    margin: 2px;
+}
