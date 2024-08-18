@@ -2,19 +2,27 @@ const allNumButtons = document.getElementsByClassName("number");
 const allOperatorButtons = document.getElementsByClassName("operator");
 
 for (i=0 ; i<allNumButtons.length ; i++){
-    allNumButtons[i].addEventListener("click", setValueOne);
+    allNumButtons[i].addEventListener("click", setValues);
 }
 for (i=0 ; i<allOperatorButtons.length ; i++){
     allOperatorButtons[i].addEventListener("click", setOperator);
 }
 
 let valueOne = 1;
+let valueTwo = 1;
 let savedValue = false;
 let operatorSelection = 0;
 
-function setValueOne(){
+function setValues(){
+    if (!savedValue){
     valueOne = this.textContent;
-    console.log(valueOne);
+    console.log(`Value one: ${valueOne}`);
+    savedValue = true;
+    } else {
+    valueTwo = this.textContent;
+    console.log(`Value two: ${valueTwo}`);
+    savedValue = false;
+    }
 }
 
 function setOperator(){
