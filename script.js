@@ -1,5 +1,7 @@
 const allNumButtons = document.getElementsByClassName("number");
 const allOperatorButtons = document.getElementsByClassName("operator");
+const equalButton = document.querySelector(".equals");
+const display = document.querySelector(".display");
 
 for (i=0 ; i<allNumButtons.length ; i++){
     allNumButtons[i].addEventListener("click", setValues);
@@ -8,18 +10,21 @@ for (i=0 ; i<allOperatorButtons.length ; i++){
     allOperatorButtons[i].addEventListener("click", setOperator);
 }
 
+equalButton.addEventListener("click", execute);
+
 let valueOne = 1;
 let valueTwo = 1;
 let savedValue = false;
-let operatorSelection = 0;
+let operatorSelection = "";
+let displayResult = 0;
 
 function setValues(){
     if (!savedValue){
-    valueOne = this.textContent;
+    valueOne = parseInt(this.textContent);
     console.log(`Value one: ${valueOne}`);
     savedValue = true;
     } else {
-    valueTwo = this.textContent;
+    valueTwo = parseInt(this.textContent);
     console.log(`Value two: ${valueTwo}`);
     savedValue = false;
     }
@@ -30,7 +35,23 @@ function setOperator(){
     console.log(operatorSelection);
 }
 
+function execute(){
+    if (operatorSelection == "x"){
+        displayResult = valueOne * valueTwo;
+    } else if (operatorSelection == "/"){
+        displayResult = valueOne / valueTwo;
+    } else if (operatorSelection == "+"){
+        displayResult = valueOne + valueTwo;
+    } else if (operatorSelection == "-"){
+        displayResult = valueOne - valueTwo;
+    } 
 
+    updateDisplay()
+}
+
+function updateDisplay(){
+    display.textContent = displayResult;
+}
 
 
 
