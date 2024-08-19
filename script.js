@@ -1,5 +1,3 @@
-// NEXT ISSUE: Calculator cannot handle numbers with more that one digit, second value shouldn't be changed before operator is chosen
-
 const allNumButtons = document.getElementsByClassName("number");
 const allOperatorButtons = document.getElementsByClassName("operator");
 const equalButton = document.querySelector(".equals");
@@ -19,12 +17,20 @@ let valueTwo = "";
 let savedValue = false;
 let operatorSelection = "";
 let displayResult = 0;
+let equalJustPressed = false;
 
 function convertValue(text){
     return parseFloat(text);
 }
 
 function setValues(){
+    if (equalJustPressed){
+        valueOne = "";
+        valueTwo = "";
+        savedValue = false;
+        equalJustPressed = false;
+    }
+
     if (!savedValue){
     valueOne += (this.textContent);
     updateDisplay(valueOne);
@@ -37,12 +43,21 @@ function setValues(){
 }
 
 function setOperator(){
+    if (equalJustPressed){
+        valueTwo = "";
+    }
+
     operatorSelection = this.textContent;
-    console.log(operatorSelection);
+    console.log(`Operator: ${operatorSelection}`);
     savedValue = true;
+    equalJustPressed = false;
+
+    console.log(valueOne,valueTwo);
 }
 
 function execute(){
+    console.log(valueOne,valueTwo)
+
     if (operatorSelection == "x"){
         displayResult = valueOne * valueTwo;
     } else if (operatorSelection == "/"){
@@ -54,13 +69,21 @@ function execute(){
     } 
 
     updateDisplay(displayResult);
+    console.log(`Result = ${displayResult}`);
+
+    valueOne = displayResult;
+
+    equalJustPressed = true;
 }
 
 function updateDisplay(value){
     display.textContent = value;
 }
 
-
+// Adding continuous functionality
+// Save result to valueOne after equal sign is pressed
+// If the operator is pressed continue as normal
+// If a number is pressed, start over on valueOne
 
 
 
