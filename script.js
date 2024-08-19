@@ -1,3 +1,5 @@
+// NEXT ISSUE: Calculator cannot handle numbers with more that one digit, second value shouldn't be changed before operator is chosen
+
 const allNumButtons = document.getElementsByClassName("number");
 const allOperatorButtons = document.getElementsByClassName("operator");
 const equalButton = document.querySelector(".equals");
@@ -12,27 +14,32 @@ for (i=0 ; i<allOperatorButtons.length ; i++){
 
 equalButton.addEventListener("click", execute);
 
-let valueOne = 1;
-let valueTwo = 1;
+let valueOne = "";
+let valueTwo = "";
 let savedValue = false;
 let operatorSelection = "";
 let displayResult = 0;
 
+function convertValue(text){
+    return parseFloat(text);
+}
+
 function setValues(){
     if (!savedValue){
-    valueOne = parseInt(this.textContent);
+    valueOne += (this.textContent);
+    updateDisplay(valueOne);
     console.log(`Value one: ${valueOne}`);
-    savedValue = true;
     } else {
-    valueTwo = parseInt(this.textContent);
-    console.log(`Value two: ${valueTwo}`);
-    savedValue = false;
+        valueTwo += (this.textContent);
+        updateDisplay(valueTwo);
+        console.log(`Value two: ${valueTwo}`);
     }
 }
 
 function setOperator(){
     operatorSelection = this.textContent;
     console.log(operatorSelection);
+    savedValue = true;
 }
 
 function execute(){
@@ -46,11 +53,11 @@ function execute(){
         displayResult = valueOne - valueTwo;
     } 
 
-    updateDisplay()
+    updateDisplay(displayResult);
 }
 
-function updateDisplay(){
-    display.textContent = displayResult;
+function updateDisplay(value){
+    display.textContent = value;
 }
 
 
