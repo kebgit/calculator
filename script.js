@@ -2,6 +2,7 @@ const allNumButtons = document.getElementsByClassName("number");
 const allOperatorButtons = document.getElementsByClassName("operator");
 const equalButton = document.querySelector(".equals");
 const display = document.querySelector(".display");
+const clearButton = document.querySelector(".clear");
 
 for (i=0 ; i<allNumButtons.length ; i++){
     allNumButtons[i].addEventListener("click", setValues);
@@ -11,13 +12,14 @@ for (i=0 ; i<allOperatorButtons.length ; i++){
 }
 
 equalButton.addEventListener("click", execute);
+clearButton.addEventListener("click", clear);
 
-let valueOne = "";
-let valueTwo = "";
-let savedValue = false;
-let operatorSelection = "";
-let displayResult = 0;
-let equalJustPressed = false;
+valueOne = "";
+valueTwo = "";
+savedValue = false;
+operatorSelection = "";
+displayResult = 0;
+equalJustPressed = false;
 
 function convertValue(text){
     return parseFloat(text);
@@ -78,6 +80,18 @@ function execute(){
 
 function updateDisplay(value){
     display.textContent = value;
+}
+
+function clear(){
+    valueOne = "";
+    valueTwo = "";
+    savedValue = false;
+    operatorSelection = "";
+    displayResult = 0;
+    equalJustPressed = false;
+    
+    updateDisplay(displayResult);
+    console.log("-- CLEAR --");
 }
 
 // Adding continuous functionality
