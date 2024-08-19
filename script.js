@@ -76,7 +76,7 @@ function execute(){
     } else if (operatorSelection == "/"){
         displayResult = valueOne / valueTwo;
     } else if (operatorSelection == "+"){
-        displayResult = +valueOne + +valueTwo;
+        displayResult = convertValue(valueOne) + convertValue(valueTwo);
     } else if (operatorSelection == "-"){
         displayResult = valueOne - valueTwo;
     } 
