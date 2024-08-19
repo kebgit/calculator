@@ -14,13 +14,13 @@ for (i=0 ; i<allOperatorButtons.length ; i++){
 equalButton.addEventListener("click", execute);
 clearButton.addEventListener("click", clear);
 
-valueOne = "";
-valueTwo = "";
-savedValue = false;
-operatorSelection = "";
-displayResult = 0;
-equalJustPressed = false;
-dotPressed = false;
+let valueOne = "";
+let valueTwo = "";
+let savedValue = false;
+let operatorSelection = "";
+let displayResult = 0;
+let equalJustPressed = false;
+let dotPressed = false;
 
 function convertValue(text){
     return parseFloat(text);
@@ -101,18 +101,19 @@ function clear(){
     operatorSelection = "";
     displayResult = 0;
     equalJustPressed = false;
+    dotPressed = false;
     
     updateDisplay(displayResult);
     console.log("-- CLEAR --");
 }
 
-// Adding continuous functionality
+// Adding continuous functionality:
 // Save result to valueOne after equal sign is pressed
 // If the operator is pressed continue as normal
 // If a number is pressed, start over on valueOne
 
 
-
+// Pseudo:
 // start
 // click number
 // save valueOne
