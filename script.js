@@ -20,6 +20,7 @@ savedValue = false;
 operatorSelection = "";
 displayResult = 0;
 equalJustPressed = false;
+dotPressed = false;
 
 function convertValue(text){
     return parseFloat(text);
@@ -33,14 +34,22 @@ function setValues(){
         equalJustPressed = false;
     }
 
-    if (!savedValue){
-    valueOne += (this.textContent);
-    updateDisplay(valueOne);
-    console.log(`Value one: ${valueOne}`);
+
+    if (dotPressed && this.textContent =="."){
+        console.log("Multiple '.' ignored")
     } else {
-        valueTwo += (this.textContent);
-        updateDisplay(valueTwo);
-        console.log(`Value two: ${valueTwo}`);
+        if (this.textContent == "."){
+            dotPressed = true;
+        }
+        if (!savedValue){
+            valueOne += (this.textContent);
+            updateDisplay(valueOne);
+            console.log(`Value one: ${valueOne}`);
+            } else {
+                valueTwo += (this.textContent);
+                updateDisplay(valueTwo);
+                console.log(`Value two: ${valueTwo}`);
+            }
     }
 }
 
@@ -51,8 +60,10 @@ function setOperator(){
 
     operatorSelection = this.textContent;
     console.log(`Operator: ${operatorSelection}`);
+
     savedValue = true;
     equalJustPressed = false;
+    dotPressed = false;
 
     console.log(valueOne,valueTwo);
 }
@@ -76,6 +87,7 @@ function execute(){
     valueOne = displayResult;
 
     equalJustPressed = true;
+    dotPressed = false;
 }
 
 function updateDisplay(value){
