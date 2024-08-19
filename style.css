@@ -1,10 +1,11 @@
 body *{
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 1em;
     margin: 1em;
+    border-radius: 5px;
 }
 
 .numbers,
@@ -13,9 +14,24 @@ body *{
     flex-direction: column;
 }
 
+.operator,
+.clear,
+.equals{
+    background-color: gray;
+}
+
+.calculator-case{
+    background-color: rgba(128, 128, 128, 0.545);
+}
+
+.number {
+    background-color: lightgray;
+}
+
 .display{
-    width:100%
+    /* width:100%; */
     text-align: right;
+    background-color: white;
 }
 
 .numbers,
@@ -26,4 +42,13 @@ body *{
 .calculator-case *{
     padding: 2px;
     margin: 2px;
+}
+
+.buttons{
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+.buttons-row{
+    border: 1px solid black;
 }
